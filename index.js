@@ -43,6 +43,7 @@ app.get('/komik', async (req, res) => {
     }   
 });
 
+// membuat fungsi put komik (update komik)
 app.put('/komik/:id', async (req, res) => {
     const id = req.params.id;
     const data = req.body;
