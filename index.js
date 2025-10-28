@@ -7,18 +7,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Test database connection and sync models
-app.listen(PORT, async () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+// Test database connection and sync models
+db.sequelize.sync()
+    .then(() => {
+        console.log('✅ Database synced successfully');
+        app.listen(PORT, () => {
+        console.log(`🚀 Server is running on http://localhost:${PORT}`);
+        });
+    })
+    .catch((err) => {
+        console.error('❌ Failed to sync database:', err);
 });
 
-db.sequelize.sync().then((result) => {
-    app.listen(3000, () => {
-        console.log('Server Started');
-    })
-})
-    .catch((err) => {
-        console.log(err);
-})
 
 // CRUD Endpoints for Komik model
 
@@ -29,7 +29,7 @@ app.post('/komik', async (req, res) => {
         const komik = await db.Komik.create(data);
         res.send(komik);
     } catch (error) {
-        res.status(500).send({ messafe: error.message });
+        res.status(500).send({ message: error.message });
     }
 });
 
