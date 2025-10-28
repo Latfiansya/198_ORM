@@ -21,7 +21,8 @@ db.sequelize.sync().then((result) => {
 })
 
 // CRUD Endpoints for Komik model
-// 
+
+// membuat fungsi post komik
 app.post('/komik', async (req, res) => {
     const data = req.body;
     try {
@@ -32,6 +33,7 @@ app.post('/komik', async (req, res) => {
     }
 });
 
+//
 app.get('/komik', async (req, res) => {
     try {
         const komik = await db.Komik.findAll();  
