@@ -33,7 +33,7 @@ app.post('/komik', async (req, res) => {
     }
 });
 
-//
+// membuat fungsi get komik
 app.get('/komik', async (req, res) => {
     try {
         const komik = await db.Komik.findAll();  
